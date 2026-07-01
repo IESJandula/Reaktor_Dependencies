@@ -35,8 +35,16 @@ jobs:
           cat > "$RUNNER_TEMP/maven/settings.xml" <<'EOF'
           <settings>
             <servers>
+              <!-- Para publicar la librería -->
               <server>
                 <id>nexus-deploy</id>
+                <username>${env.NEXUS_PUBLISH_USERNAME}</username>
+                <password>${env.NEXUS_PUBLISH_PASSWORD}</password>
+              </server>
+
+              <!-- Para descargar Spring, Firebase y demás dependencias -->
+              <server>
+                <id>nexus-public</id>
                 <username>${env.NEXUS_PUBLISH_USERNAME}</username>
                 <password>${env.NEXUS_PUBLISH_PASSWORD}</password>
               </server>
